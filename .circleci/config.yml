@@ -11,10 +11,10 @@ jobs:
       - image: cimg/postgres:16.0
     environment:
       RAILS_ENV: test
-      POSTGRES_DB: template_hotwire_test
+      POSTGRES_DB: notes_test
       PGHOST: 127.0.0.1
-      PGPASSWORD: th_password_test
-      PGUSER: th_user_test
+      PGPASSWORD: notes_password_test
+      PGUSER: notes_user_test
     steps:
       - checkout
       - ruby/install-deps
@@ -23,7 +23,7 @@ jobs:
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
       - run:
           name: Create database roles
-          command: echo "CREATE ROLE th_user_test WITH LOGIN CREATEDB PASSWORD 'th_password_test';" | psql -U postgres
+          command: echo "CREATE ROLE notes_user_test WITH LOGIN CREATEDB PASSWORD 'notes_password_test';" | psql -U postgres
       - run:
           name: Database setup
           command: bundle exec rails db:create db:migrate RAILS_ENV=test

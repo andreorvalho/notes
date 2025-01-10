@@ -1,0 +1,29 @@
+<div id="note_form">
+  <%= form_with model: note, local: false do |form| %>
+    <div id="flash"></div>
+    <% if note.errors.any? %>
+      <div class="bg-red-100 text-red-700 p-4 mb-4 rounded">
+        <h2 class="font-bold mb-2">Errors:</h2>
+        <ul>
+          <% note.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="mb-4">
+      <%= form.label :title, class: 'block text-gray-700 font-medium' %>
+      <%= form.text_field :title, class: 'w-full border rounded p-2' %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label :content, class: 'block text-gray-700 font-medium' %>
+      <%= form.rich_text_area :content, class: 'w-full border rounded p-2' %>
+    </div>
+
+    <div>
+      <%= form.submit class: 'bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600' %>
+    </div>
+  <% end %>
+</div>

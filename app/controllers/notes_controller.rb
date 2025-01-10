@@ -10,7 +10,7 @@ class NotesController < ApplicationController
 
     if @note.save
       respond_to do |format|
-        format.html { redirect_to notes_path, notice: 'Note was successfully created.' }
+        format.html { redirect_to notes_path, notice: "Note was successfully created." }
         format.turbo_stream
       end
     else
@@ -22,7 +22,7 @@ class NotesController < ApplicationController
 
   def update
     if @note.update(note_params)
-      redirect_to notes_path, notice: 'Note was successfully updated.'
+      redirect_to notes_path, notice: "Note was successfully updated."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -31,7 +31,7 @@ class NotesController < ApplicationController
   def destroy
     @note.destroy
     respond_to do |format|
-      format.html { redirect_to notes_path, notice: 'Note was successfully destroyed.' }
+      format.html { redirect_to notes_path, notice: "Note was successfully destroyed." }
       format.turbo_stream
     end
   end

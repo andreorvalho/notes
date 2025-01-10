@@ -1,11 +1,9 @@
 class NotesController < ApplicationController
-  before_action :set_note, only: %i[show edit update destroy]
+  before_action :set_note, only: %i[edit update destroy]
 
   def index
     @notes = Note.all
   end
-
-  def show; end
 
   def create
     @note = Note.new(note_params)
@@ -24,12 +22,9 @@ class NotesController < ApplicationController
 
   def update
     if @note.update(note_params)
-      respond_to do |format|
-        format.html { redirect_to notes_path, notice: 'Note was successfully updated.' }
-        format.turbo_stream
-      end
+      redirect_to notes_path, notice: 'Note was successfully updated.'
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 

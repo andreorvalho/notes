@@ -1,1 +1,2 @@
 <%= turbo_stream.remove dom_id(@note) %>
+<%= turbo_stream.append 'flash-list', partial: 'shared/flash', locals: { message: 'Note was successfully deleted.', classes: "bg-red-100 text-red-700" } %>

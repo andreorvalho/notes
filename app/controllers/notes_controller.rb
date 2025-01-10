@@ -18,8 +18,6 @@ class NotesController < ApplicationController
     end
   end
 
-  def edit; end
-
   def update
     if @note.update(note_params)
       redirect_to notes_path, notice: "Note was successfully updated."
